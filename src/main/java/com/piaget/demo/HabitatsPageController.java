@@ -1,0 +1,16 @@
+package com.piaget.demo;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class HabitatsPageController {
+
+    @GetMapping("/habitatspage")
+    public String animals(Model model)
+    {
+        model.addAttribute("habitatspage", new HabitatsPage());
+        return "habitatspage";
+    }
+}

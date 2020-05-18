@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Hello World</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <style>
+    body {
+        font-size:72px;
+    }
+    #comment {
+        font-size:32px;
+    }
+    </style>
+</head>
+<body>
+Main Page
+<form action="#" th:action="@{/mainpage}" th:object="${mainpage}" method="post">
+    <input type="submit" th:field="*{pagename}" value="Animals">
+</form>
+<form action="#" th:action="@{/mainpage}" th:object="${mainpage}" method="post">
+    <input type="submit" th:field="*{pagename}" value="Habitats">
+</form>
+<form action="#" th:action="@{/mainpage}" th:object="${mainpage}" method="post">
+    <input type="submit" th:field="*{pagename}" value="Attendants">
+</form>
+
+</body>
+</html>
