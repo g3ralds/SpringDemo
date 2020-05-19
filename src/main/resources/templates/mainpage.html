@@ -16,14 +16,14 @@
 </head>
 <body>
 Main Page
-<form action="#" th:action="@{/mainpage}" th:object="${mainpage}" method="post">
-    <input type="submit" th:field="*{pagename}" value="Animals">
+<form action="#" th:action="@{/animalspage}" th:object="${mainpage}" method="post">
+    <input type="submit" value="Animals">
 </form>
-<form action="#" th:action="@{/mainpage}" th:object="${mainpage}" method="post">
-    <input type="submit" th:field="*{pagename}" value="Habitats">
+<form action="#" th:action="@{/habitatspage}" th:object="${habitatspage}" method="post">
+    <input type="submit" value="Habitats">
 </form>
-<form action="#" th:action="@{/mainpage}" th:object="${mainpage}" method="post">
-    <input type="submit" th:field="*{pagename}" value="Attendants">
+<form action="#" th:action="@{/attendantspage}" th:object="${attendantspage}" method="post">
+    <input type="submit" value="Attendants">
 </form>
 
 </body>

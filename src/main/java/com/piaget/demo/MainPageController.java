@@ -17,19 +17,23 @@ public class MainPageController {
     }
 
     @PostMapping("/mainpage")
-    public String goTo(@ModelAttribute MainPage mainPage) {
-
-        return "animalspage";
-
-//        if (mainPage.getPagename().equals("AnimalsPage")) {
-//            return "animalspage";
-//        } else if (mainPage.getPagename().equals("HabitatsPage")) {
-//            return "habitatspage";
-//        } else if (mainPage.getPagename().equals("AttendantsPage")) {
-//            return "attendantspage";
-//        } else {
-//            return "mainpage";
-//        }
+    public String goToMainPage(@ModelAttribute MainPage mainPage) {
+        return "mainpage";
     }
+
+//    @PostMapping("/mainpage")
+//    public String goToAnimalsPage(@ModelAttribute AnimalsPage mainPage) {
+//        return "animalspage";
+//    }
+//
+//    @PostMapping("/mainpage")
+//    public String goToHabitatsPage(@ModelAttribute HabitatsPage mainPage) {
+//        return "habitatspage";
+//    }
+//
+//    @PostMapping("/mainpage")
+//    public String goToAttendantsPage(@ModelAttribute AttendantsPage mainPage) {
+//        return "attendantspage";
+//    }
 
 }

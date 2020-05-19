@@ -15,4 +15,11 @@ public class AnimalsPageController {
         model.addAttribute("animalspage", new AnimalsPage());
         return "animalspage";
     }
+
+    @PostMapping("/animalspage")
+    public String goToAnimals(Model model)
+    {
+        return "animalspage";
+    }
+    
 }
