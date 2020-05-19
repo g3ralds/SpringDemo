@@ -15,7 +15,10 @@ import javax.validation.Valid;
 public class AnimalsPage {
 
     private final AnimalRepository animalRepository;
-    
+
+    public AnimalsPage() {
+    }
+
     @Autowired
     public AnimalsPage(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
