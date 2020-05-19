@@ -10,7 +10,7 @@ public class Animal {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     private String name;
     private String species;
@@ -29,7 +29,7 @@ public class Animal {
                 id, name, species);
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -41,5 +41,5 @@ public class Animal {
         return species;
     }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(long id) { this.id = id; }
 }
