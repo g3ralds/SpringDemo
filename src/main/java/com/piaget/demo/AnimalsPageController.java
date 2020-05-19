@@ -21,5 +21,5 @@ public class AnimalsPageController {
     {
         return "animalspage";
     }
-    
+
 }

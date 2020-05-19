@@ -7,9 +7,11 @@ import javax.persistence.Id;
 
 @Entity
 public class Animal {
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
     private String name;
     private String species;
 
@@ -38,4 +40,6 @@ public class Animal {
     public String getSpecies() {
         return species;
     }
+
+    public void setId(Long id) { this.id = id; }
 }
