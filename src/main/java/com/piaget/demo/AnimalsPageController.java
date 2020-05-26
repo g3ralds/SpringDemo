@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class AnimalsPageController {
@@ -19,6 +20,12 @@ public class AnimalsPageController {
     @GetMapping("/animalspage")
     public String animals(Model model)
     {
+        List<Animal> animals = animalRepository.findAll();
+
+        for (Animal animal : animals) {
+            animal.calculateSatisfaction();
+        }
+
         return "animalspage";
     }
 
@@ -48,6 +55,14 @@ public class AnimalsPageController {
 
         animalRepository.save(animal);
         model.addAttribute("animals", animalRepository.findAll());
+
+        // obter todos os animais
+        List<Animal> animals = animalRepository.findAll();
+
+
+        // calcular o seu nivel de satisfação
+
+
         return "animalspage";
     }
 

@@ -17,7 +17,8 @@
 <body>
 Main Page
 <form action="#" th:action="@{/animalspage}" th:object="${mainpage}" method="post">
-    <input type="submit" value="Animals">
+<!--    <a href="/animalspage"><img th:src="@{images/animal.png}" width="300" height="200"></a>-->
+    <input type="submit" th:src="@{images/animal.png}" value="Animals">
 </form>
 <form action="#" th:action="@{/habitatspage}" th:object="${habitatspage}" method="post">
     <input type="submit" value="Habitats">

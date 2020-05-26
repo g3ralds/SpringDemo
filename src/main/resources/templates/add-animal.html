@@ -19,13 +19,23 @@
                     <div class="form-group col-md-6">
                         <label for="name" class="col-form-label">Name</label>
                         <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
-                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
                     </div>
+
                     <div class="form-group col-md-6">
                         <label for="species" class="col-form-label">Species</label>
                         <input type="text" th:field="*{species}" class="form-control" id="species" placeholder="Species">
-                        <span th:if="${#fields.hasErrors('species')}" th:errors="*{species}" class="text-danger"></span>
                     </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="age" class="col-form-label">Age</label>
+                        <input type="text" th:field="*{age}" class="form-control" id="age" placeholder="Age">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="avatar" class="col-form-label">Avatar</label>
+                        <input type="file" th:field="*{avatar}" id="avatar" placeholder="Avatar">
+                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-6 mt-5">
@@ -33,6 +43,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
