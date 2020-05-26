@@ -54,7 +54,7 @@ public class AnimalsPageController {
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Animal animal = animalRepository.findById(id);
-        model.addAttribute("animals", animal);
+        model.addAttribute("animal", animal);
         return "update-animal";
     }
 
