@@ -24,6 +24,7 @@
                         <th>Avatar</th>
                         <th>Age</th>
                         <th>Species</th>
+                        <th>Satisfaction</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -34,12 +35,14 @@
                         <td th:text="${animal.avatar}"></td>
                         <td th:text="${animal.age}"></td>
                         <td th:text="${animal.species}"></td>
+                        <td th:text="${animal.satisfaction}"></td>
                         <td><a th:href="@{/edit/{id}(id=${animal.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                         <td><a th:href="@{/delete/{id}(id=${animal.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+            <p th:text="${totalSatisfaction}"></p>
             <p class="my-5"><a href="/signup" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i></a></p>
 
             <form action="#" th:action="@{/habitatspage}" th:object="${habitat}" method="get">
