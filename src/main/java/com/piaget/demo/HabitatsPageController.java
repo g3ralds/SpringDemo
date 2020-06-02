@@ -1,5 +1,7 @@
 package com.piaget.demo;
 
+import com.piaget.demo.entities.Animal;
+import com.piaget.demo.entities.Attendant;
 import com.piaget.demo.entities.Habitat;
 import com.piaget.demo.repositories.HabitatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,58 +16,33 @@ import javax.validation.Valid;
 
 @Controller
 public class HabitatsPageController {
-
-    private HabitatRepository habitatRepository;
-
-    @GetMapping("/habitatspage")
-    public String habitats(Model model)
-    {
-        return "habitatspage";
-    }
-
-    @PostMapping("/habitatspage")
-    public String goToHabitats(Model model)
-    {
-        return "habitatspage";
-    }
+    public static HabitatRepository habitatRepository;
 
     @Autowired
-    public HabitatsPageController(HabitatRepository habitatRepository) {
-        this.habitatRepository = habitatRepository;
+    public HabitatsPageController(HabitatRepository repository) {
+        this.habitatRepository = repository;
     }
 
-    @GetMapping("/signup")
-    public String showSignUpForm(Habitat habitat) {
+    @GetMapping("/createHabitat")
+    public String createHabitat(Habitat habitat) {
         return "add-habitat";
     }
 
     @PostMapping("/addHabitat")
-    public String addHabitat(@Valid Habitat habitat, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "add-habitat";
-        }
-
+    public String addAttendant(@Valid Habitat habitat, BindingResult result, Model model) {
         habitatRepository.save(habitat);
         model.addAttribute("habitats", habitatRepository.findAll());
-
-        // obter todos os animais
-        //List<Animal> animals = animalRepository.findAll();
-
-
-        // calcular o seu nivel de satisfação
-
-
-        return "animalspage";
+        return "habitatspage";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editHabitat/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Habitat habitat = habitatRepository.findById(id);
         model.addAttribute("habitat", habitat);
         return "update-habitat";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateHabitat/{id}")
     public String updateHabitat(@PathVariable("id") long id, @Valid Habitat habitat, BindingResult result, Model model) {
         if (result.hasErrors()) {
             habitat.setId(id);
@@ -77,11 +54,23 @@ public class HabitatsPageController {
         return "habitatspage";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteHabitat/{id}")
     public String deleteHabitat(@PathVariable("id") long id, Model model) {
         Habitat habitat = habitatRepository.findById(id);
         habitatRepository.delete(habitat);
         model.addAttribute("habitats", habitatRepository.findAll());
+        return "habitatspage";
+    }
+
+    @GetMapping("/habitatspage")
+    public String habitats(Model model)
+    {
+        return "habitatspage";
+    }
+
+    @PostMapping("/habitatspage")
+    public String goToHabitats(Model model)
+    {
         return "habitatspage";
     }
 }
