@@ -1,6 +1,7 @@
 package com.piaget.demo;
 
 import com.piaget.demo.entities.Animal;
+import com.piaget.demo.entities.Habitat;
 import com.piaget.demo.repositories.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,18 +17,11 @@ import java.util.List;
 
 @Controller
 public class AnimalsPageController {
-
-    private AnimalRepository animalRepository;
+    public static AnimalRepository animalRepository;
 
     @GetMapping("/animalspage")
     public String animals(Model model)
     {
-        List<Animal> animals = animalRepository.findAll();
-
-        for (Animal animal : animals) {
-            animal.calculateSatisfaction();
-        }
-
         return "animalspage";
     }
 
@@ -53,15 +47,27 @@ public class AnimalsPageController {
             return "add-animal";
         }
 
+        // Ainda não é o código certo, mas está mais perto
+        // (O código certo é com uma associação dinamica entre o animal e o habitat, como está neste exemplo:
+        // https://howtodoinjava.com/spring-mvc/spring-mvc-populate-and-validate-dropdown-example/
+        // )
+
+        List<Habitat> habitatsDaBaseDeDados = HabitatsPageController.habitatRepository.findAll();
+        animal.setHabitat(habitatsDaBaseDeDados.get(0));
+
+        List<Animal> animaisDaBaseDeDados = animalRepository.findAll();
+
+        for (Animal animalDaBaseDeDados : animaisDaBaseDeDados) {
+            animalDaBaseDeDados.calculateSatisfaction();
+        }
+
+        animal.calculateSatisfaction();
+
         animalRepository.save(animal);
+
+        calculateTotalSatisfaction(model);
+
         model.addAttribute("animals", animalRepository.findAll());
-
-        // obter todos os animais
-        List<Animal> animals = animalRepository.findAll();
-
-
-        // calcular o seu nivel de satisfação
-
 
         return "animalspage";
     }
@@ -91,6 +97,23 @@ public class AnimalsPageController {
         animalRepository.delete(animal);
         model.addAttribute("animals", animalRepository.findAll());
         return "animalspage";
+    }
+
+    private void calculateTotalSatisfaction(Model model) {
+        List<Animal> animaisDaBaseDeDados = animalRepository.findAll();
+
+        int satisfacaoAcumulada = 0;
+
+        for (Animal animalDaBaseDeDados : animaisDaBaseDeDados) {
+            animalDaBaseDeDados.calculateSatisfaction();
+            satisfacaoAcumulada += animalDaBaseDeDados.getSatisfaction();
+        }
+
+        int numeroDeAnimais = animaisDaBaseDeDados.size();
+
+        double mediaDaSatisfacao = satisfacaoAcumulada / numeroDeAnimais;
+
+        model.addAttribute("totalSatisfaction", mediaDaSatisfacao);
     }
 
 }

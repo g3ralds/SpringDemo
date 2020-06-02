@@ -82,6 +82,7 @@ public class Animal {
 
     public void setHabitat(Habitat habitat) {
         this.habitat = habitat;
+        habitat.addAnimal(this);
     }
 
     @Override
