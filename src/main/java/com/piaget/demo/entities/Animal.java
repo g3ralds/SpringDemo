@@ -4,6 +4,8 @@ import com.piaget.demo.Satisfaction;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Animal {
@@ -18,8 +20,8 @@ public class Animal {
     private String avatar;
     private int satisfaction;
 
-    @OneToOne
-    private Habitat habitat;
+    @OneToMany
+    private List<Habitat> habitats = new ArrayList<>();
 
     protected Animal() {}
 
@@ -77,12 +79,16 @@ public class Animal {
     }
 
     public Habitat getHabitat() {
-        return this.habitat;
+        return this.habitats.get(this.habitats.size() - 1);
     }
 
     public void setHabitat(Habitat habitat) {
-        this.habitat = habitat;
+        this.habitats.add(habitat);
         habitat.addAnimal(this);
+    }
+
+    public List<Habitat> getAllHabitats() {
+        return this.habitats;
     }
 
     @Override

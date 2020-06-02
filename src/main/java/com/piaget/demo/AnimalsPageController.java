@@ -67,6 +67,9 @@ public class AnimalsPageController {
 
         calculateTotalSatisfaction(model);
 
+        List<Habitat> habitatsPorOndeEsteAnimalPassou = animal.getAllHabitats();
+
+        model.addAttribute("habitatsOndePassou", habitatsPorOndeEsteAnimalPassou);
         model.addAttribute("animals", animalRepository.findAll());
 
         return "animalspage";
