@@ -1,11 +1,9 @@
 package com.piaget.demo.entities;
 
 import com.piaget.demo.Satisfaction;
+import org.springframework.lang.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Animal {
@@ -20,22 +18,7 @@ public class Animal {
     private String avatar;
     private int satisfaction;
 
-    public int getSatisfaction() {
-        return satisfaction;
-    }
-
-    public void setSatisfaction(int satisfaction) {
-        this.satisfaction = satisfaction;
-    }
-
-    public Habitat getHabitat() {
-        return habitat;
-    }
-
-    public void setHabitat(Habitat habitat) {
-        this.habitat = habitat;
-    }
-
+    @OneToOne
     private Habitat habitat;
 
     protected Animal() {}
@@ -85,16 +68,28 @@ public class Animal {
         this.avatar = avatar;
     }
 
+    public int getSatisfaction() {
+        return satisfaction;
+    }
+
+    public void setSatisfaction(int satisfaction) {
+        this.satisfaction = satisfaction;
+    }
+
+    public Habitat getHabitat() {
+        return this.habitat;
+    }
+
+    public void setHabitat(Habitat habitat) {
+        this.habitat = habitat;
+    }
+
     @Override
     public String toString() {
         return String.format("Animal[id=%d, name='%s', species='%s']", id, name, species);
     }
 
-
     public void calculateSatisfaction() {
         satisfaction = Satisfaction.calculate(this);
-    }
-
-    public boolean EqualsTo(Animal a) {
     }
 }

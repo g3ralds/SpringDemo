@@ -12,7 +12,6 @@ public class MainPageController {
     @GetMapping("/mainpage")
     public String hello(Model model)
     {
-        model.addAttribute("mainpage", new MainPage());
         return "mainpage";
     }
 

@@ -1,10 +1,18 @@
 package com.piaget.demo.entities;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Habitat {
 
-    List<Animal> animals;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long id;
+
+    @OneToMany
+    private List<Animal> animals = new ArrayList<Animal>();
 
     private String name;
     private int area;
@@ -37,8 +45,12 @@ public class Habitat {
         return animals;
     }
 
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
+    public void addAnimals(Animal animal) {
+        this.animals.add(animal);
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 }

@@ -11,23 +11,43 @@ public class Satisfaction {
         return 20 + igual(animal) - diferente(animal) + espaco(animal);
     }
 
-    public static int igual(Animal animal)
+    private static int igual(Animal animal)
     {
-        Habitat habitat = animal.getHabitat();
+        Habitat habitat = new Habitat();
         List<Animal> animals = habitat.getAnimals();
 
         int result = 0;
         for (Animal a : animals) {
-            if (animal.getSpecies().EqualsTo(a.getSpecies())) {
+            if (animal.getSpecies().equals(a.getSpecies())) {
                 result++;
             }
         }
 
+        // Não contar consigo próprio
+        result--;
+
         return 3 * result;
     }
 
-    public static int diferente(Animal animal) {
+    private static int diferente(Animal animal) {
+        Habitat habitat = new Habitat();
+        List<Animal> animals = habitat.getAnimals();
 
+        int result = 0;
+        for (Animal a : animals) {
+            if (!animal.getSpecies().equals(a.getSpecies())) {
+                result++;
+            }
+        }
+
+        return 2 * result;
+    }
+
+    private static int espaco(Animal animal) {
+        Habitat habitat = new Habitat();
+        List<Animal> animals = habitat.getAnimals();
+
+        return Math.round(habitat.getArea() / animals.size());
     }
 
 }

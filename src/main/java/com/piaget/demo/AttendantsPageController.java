@@ -28,7 +28,6 @@ public class AttendantsPageController {
         return "add-attendant";
     }
 
-
     @PostMapping("/addAttendant")
     public String addAttendant(@Valid Attendant attendant, BindingResult result,  Model model) {
         attendantRepository.save(attendant);
@@ -36,20 +35,9 @@ public class AttendantsPageController {
         return "attendantspage";
     }
 
-
-
-
-
-
-
-
-
-
-
     @GetMapping("/attendantspage")
     public String attendants(Model model)
     {
-        model.addAttribute("attendantspage", new AttendantsPage());
         return "attendantspage";
     }
 

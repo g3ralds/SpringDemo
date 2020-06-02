@@ -17,6 +17,8 @@ import java.util.List;
 @Controller
 public class AnimalsPageController {
 
+    private AnimalRepository animalRepository;
+
     @GetMapping("/animalspage")
     public String animals(Model model)
     {
@@ -34,8 +36,6 @@ public class AnimalsPageController {
     {
         return "animalspage";
     }
-
-    private AnimalRepository animalRepository;
 
     @Autowired
     public AnimalsPageController(AnimalRepository animalRepository) {
