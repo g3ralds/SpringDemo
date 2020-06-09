@@ -34,6 +34,7 @@ public class AnimalsPageController {
     @PostMapping("/animalspage")
     public String goToAnimals(Model model)
     {
+        model.addAttribute("animals", animalRepository.findAll());
         return "animalspage";
     }
 
