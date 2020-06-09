@@ -31,8 +31,10 @@
                     </thead>
                     <tbody>
                     <tr th:each="animal : ${animals}">
+                        <td>
+                            <img th:src="@{${'images/' + animal.avatarFileName}}" class="img-thumbnail"></img>
+                        </td>
                         <td th:text="${animal.name}"></td>
-                        <td th:text="${animal.avatar}"></td>
                         <td th:text="${animal.age}"></td>
                         <td th:text="${animal.species}"></td>
                         <td th:text="${animal.satisfaction}"></td>

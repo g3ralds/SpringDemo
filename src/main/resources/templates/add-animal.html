@@ -14,7 +14,7 @@
     <h2 class="mb-5">New Animal</h2>
     <div class="row">
         <div class="col-md-6">
-            <form action="#" th:action="@{/addAnimal}" th:object="${animal}" method="post">
+            <form action="#" th:action="@{/addAnimal}" th:object="${animal}" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="name" class="col-form-label">Name</label>
@@ -33,7 +33,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="avatar" class="col-form-label">Avatar</label>
-                        <input type="file" th:field="*{avatar}" id="avatar" placeholder="Avatar">
+                        <input type="file" id="avatar" placeholder="Avatar" name="imageFile">
                     </div>
 
                 </div>

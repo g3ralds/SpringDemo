@@ -11,8 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -42,10 +48,12 @@ public class AnimalsPageController {
     }
 
     @PostMapping("/addAnimal")
-    public String addAnimal(@Valid Animal animal, BindingResult result, Model model) {
+    public String addAnimal(@Valid Animal animal, @RequestParam("imageFile") MultipartFile imageFile, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "add-animal";
         }
+
+        SaveImageToDisk(imageFile);
 
         // Ainda não é o código certo, mas está mais perto
         // (O código certo é com uma associação dinamica entre o animal e o habitat, como está neste exemplo:
@@ -117,6 +125,18 @@ public class AnimalsPageController {
         double mediaDaSatisfacao = satisfacaoAcumulada / numeroDeAnimais;
 
         model.addAttribute("totalSatisfaction", mediaDaSatisfacao);
+    }
+
+    public void SaveImageToDisk(MultipartFile imageFile, Animal animal) {
+        String folder = "/Users/pgeraldes/Desktop/SpringDemo/src/main/resources/static/images/";
+        try {
+            animal.setAvatarFileName(imageFile.getOriginalFilename());
+            byte[] bytes = imageFile.getBytes();
+            Path path = Paths.get(folder + imageFile.getOriginalFilename());
+            Files.write(path, bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
