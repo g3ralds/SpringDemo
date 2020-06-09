@@ -17,7 +17,7 @@ public class Animal {
     private String name;
     private String species;
     private int age;
-    private String avatar;
+    private String avatarFileName;
     private int satisfaction;
 
     @OneToMany
@@ -62,12 +62,12 @@ public class Animal {
         this.age = age;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getAvatarFileName() {
+        return this.avatarFileName;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvatarFileName(String avatarFileName) {
+        this.avatarFileName = avatarFileName;
     }
 
     public int getSatisfaction() {

@@ -53,7 +53,7 @@ public class AnimalsPageController {
             return "add-animal";
         }
 
-        SaveImageToDisk(imageFile);
+        SaveImageToDisk(imageFile, animal);
 
         // Ainda não é o código certo, mas está mais perto
         // (O código certo é com uma associação dinamica entre o animal e o habitat, como está neste exemplo:
